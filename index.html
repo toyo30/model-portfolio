@@ -1,23 +1,289 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0b0b"><meta name="description" content="Mélinda — model portfolio">
-  <title>Mélinda — Portfolio</title><link rel="stylesheet" href="./styles.css"><script src="./main.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="Mélinda — model portfolio. An exhibition in motion.">
+  <title>Mélinda — Portfolio</title>
+  <link rel="preconnect" href=".">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./main.js" defer></script>
 </head>
 <body>
-  <header class="topbar"><a class="logo" href="#top">MÉLINDA<span>.</span></a><nav aria-label="Main navigation"><a href="#work">WORK</a><a href="#about">ABOUT ME</a><a href="#contact">CONTACT</a></nav><button class="menu" aria-label="Open menu" aria-expanded="false">MENU</button></header>
-  <div class="progress"><span id="progress"></span></div>
-  <main id="top">
-    <section class="title-scene" aria-labelledby="title"><div class="title-copy"><span>MODEL / MUSE</span><h1 id="title">Mélinda<span>.</span></h1><small>AN EXHIBITION IN MOTION</small></div><div class="title-image"><img src="./public/images/01.webp" alt="Black and white portrait of Mélinda"></div></section>
-    <section id="work" class="exhibition" aria-label="Selected photographs">
-      <div class="chapter chapter-scale" data-effect="scale"><div class="chapter-label">I / PRESENCE</div><div class="chapter-frame"><img src="./public/images/04.webp" alt="Mélinda by the sea"></div><img class="float float-one" src="./public/images/05.webp" alt="Mélinda seated on the beach"><span class="chapter-mark">01</span></div>
-      <div class="chapter chapter-split" data-effect="split"><div class="chapter-label">II / BETWEEN LIGHT</div><div class="split-a"><img src="./public/images/08.webp" alt="Mélinda in tailored clothing"><img src="./public/images/09.webp" alt="Mélinda in monochrome fashion"></div><div class="split-b"><img src="./public/images/07.webp" alt="Mélinda with beauty product in forest"></div><span class="chapter-mark">02</span></div>
-      <div class="chapter chapter-stack" data-effect="stack"><div class="chapter-label">III / ELSEWHERE</div><div class="stack-frame"><img src="./public/images/12.webp" alt="Mélinda with horses"><img src="./public/images/14.webp" alt="Mélinda in white in the forest"><img src="./public/images/15.webp" alt="Mélinda reclining in the forest"></div><span class="chapter-mark">03</span></div>
-      <div class="chapter chapter-reveal" data-effect="reveal"><div class="chapter-label">IV / ANOTHER SIDE</div><div class="reveal-frame"><img src="./public/images/16.webp" alt="Mélinda in white UNLOGIC hoodie"><img src="./public/images/19.webp" alt="Creative close-up of Mélinda"></div><span class="chapter-mark">04</span></div>
-      <div class="chapter chapter-final"><img src="./public/images/18.webp" alt="Mélinda in a black dress beside stone"><span class="chapter-label">V / STILL HERE</span></div>
+
+  <!-- ═══ Fixed top bar ═══ -->
+  <header class="topbar" id="topbar">
+    <a class="logo" href="#hero">MÉLINDA<span>.</span></a>
+    <nav class="nav-desktop" aria-label="Main navigation">
+      <a href="#work">WORK</a>
+      <a href="#about">ABOUT ME</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Mobile overlay menu -->
+  <div class="mobile-menu" aria-hidden="true">
+    <nav>
+      <a href="#work">WORK</a>
+      <a href="#about">ABOUT ME</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </div>
+
+  <!-- Scroll progress -->
+  <div class="progress-bar" aria-hidden="true">
+    <span id="progress-fill"></span>
+  </div>
+
+  <main>
+
+    <!-- ═══ HERO ═══ -->
+    <section id="hero" class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <span class="kicker">MODEL / MUSE</span>
+        <h1 id="hero-title">Mélinda<span>.</span></h1>
+        <small>AN EXHIBITION IN MOTION</small>
+      </div>
+      <div class="hero-image">
+        <img
+          src="./public/images/01.webp"
+          srcset="./public/images/01-640.webp 640w, ./public/images/01.webp 1066w"
+          sizes="(max-width:700px) 100vw, 60vw"
+          alt="Black and white close-up portrait of Mélinda"
+          width="1066" height="2000"
+          fetchpriority="high"
+        >
+      </div>
+      <div class="scroll-cue" aria-hidden="true">
+        <span></span>
+        <small>SCROLL</small>
+      </div>
     </section>
-    <section id="about" class="about-panel" aria-label="About Mélinda"><div class="about-photo"><img src="./public/images/02.webp" alt="Mélinda in black and white portrait"></div><div class="about-info"><span>ABOUT ME</span><p>Available for fashion, beauty, portrait and lifestyle work.</p><dl class="measurements"><div><dt>HEIGHT</dt><dd>162 <small>cm</small></dd></div><div><dt>BUST</dt><dd>85 <small>cm</small></dd></div><div><dt>WAIST</dt><dd>65 <small>cm</small></dd></div><div><dt>HIPS</dt><dd>92 <small>cm</small></dd></div><div><dt>SHOES</dt><dd>38 <small>EU</small></dd></div><div><dt>HAIR / EYES</dt><dd>Dark brown</dd></div></dl></div></section>
-    <section id="contact" class="contact-panel"><span>CONTACT</span><a href="mailto:modelemelinda@gmail.com">modelemelinda@gmail.com ↗</a><a href="https://www.instagram.com/bisoumelinda/" target="_blank" rel="noopener">@bisoumelinda ↗</a></section>
-  </main><footer><a href="#top">MÉLINDA.</a><a href="#work">BACK TO WORK ↑</a></footer>
-</body></html>
+
+    <!-- ═══ WORK — Exhibition ═══ -->
+    <section id="work" class="exhibition" aria-label="Selected photographs">
+
+      <!-- Chapter I — PRESENCE: scale-up effect -->
+      <div class="chapter chapter--scale" data-effect="scale">
+        <div class="chapter-label">I / PRESENCE</div>
+        <div class="chapter-frame">
+          <img
+            src="./public/images/04.webp"
+            srcset="./public/images/04-640.webp 640w, ./public/images/04.webp 1333w"
+            sizes="(max-width:700px) 92vw, 51vw"
+            alt="Mélinda in a white shirt standing by the sea"
+            loading="lazy" decoding="async"
+          >
+        </div>
+        <img
+          class="float float--right"
+          src="./public/images/05.webp"
+          srcset="./public/images/05-640.webp 640w, ./public/images/05.webp 1333w"
+          sizes="(max-width:700px) 40vw, 22vw"
+          alt="Mélinda seated on the beach"
+          loading="lazy" decoding="async"
+        >
+        <img
+          class="float float--left"
+          src="./public/images/03.webp"
+          srcset="./public/images/03-640.webp 640w, ./public/images/03.webp 1333w"
+          sizes="(max-width:700px) 35vw, 18vw"
+          alt="Mélinda portrait detail"
+          loading="lazy" decoding="async"
+        >
+        <span class="chapter-mark">01</span>
+      </div>
+
+      <!-- Chapter II — BETWEEN LIGHT: parallax split -->
+      <div class="chapter chapter--split" data-effect="split">
+        <div class="chapter-label">II / BETWEEN LIGHT</div>
+        <div class="split-col split-col--left">
+          <img
+            src="./public/images/08.webp"
+            srcset="./public/images/08-640.webp 640w, ./public/images/08.webp 1333w"
+            sizes="(max-width:700px) 55vw, 28vw"
+            alt="Mélinda in tailored clothing, black and white"
+            loading="lazy" decoding="async"
+          >
+          <img
+            src="./public/images/09.webp"
+            srcset="./public/images/09-640.webp 640w, ./public/images/09.webp 1333w"
+            sizes="(max-width:700px) 55vw, 28vw"
+            alt="Mélinda in monochrome fashion"
+            loading="lazy" decoding="async"
+          >
+        </div>
+        <div class="split-col split-col--right">
+          <img
+            src="./public/images/07.webp"
+            srcset="./public/images/07-640.webp 640w, ./public/images/07.webp 1333w"
+            sizes="(max-width:700px) 42vw, 27vw"
+            alt="Mélinda in a forest with beauty product"
+            loading="lazy" decoding="async"
+          >
+          <img
+            src="./public/images/06.webp"
+            srcset="./public/images/06-640.webp 640w, ./public/images/06.webp 1333w"
+            sizes="(max-width:700px) 42vw, 27vw"
+            alt="Mélinda holding a beauty tube in a forest"
+            loading="lazy" decoding="async"
+          >
+        </div>
+        <span class="chapter-mark">02</span>
+      </div>
+
+      <!-- Chapter III — SUN & SEA: horizontal pan -->
+      <div class="chapter chapter--pan" data-effect="pan">
+        <div class="chapter-label">III / SUN &amp; SEA</div>
+        <div class="pan-track">
+          <img
+            src="./public/images/10.webp"
+            srcset="./public/images/10-640.webp 640w, ./public/images/10.webp 1333w"
+            sizes="(max-width:700px) 70vw, 30vw"
+            alt="Mélinda in black swimwear by the sea"
+            loading="lazy" decoding="async"
+          >
+          <img
+            src="./public/images/11.webp"
+            srcset="./public/images/11-640.webp 640w, ./public/images/11.webp 1333w"
+            sizes="(max-width:700px) 70vw, 30vw"
+            alt="Close-up of Mélinda in a sunhat"
+            loading="lazy" decoding="async"
+          >
+          <img
+            src="./public/images/13.webp"
+            srcset="./public/images/13-640.webp 640w, ./public/images/13.webp 1333w"
+            sizes="(max-width:700px) 70vw, 30vw"
+            alt="Mélinda beside a horse"
+            loading="lazy" decoding="async"
+          >
+        </div>
+        <span class="chapter-mark">03</span>
+      </div>
+
+      <!-- Chapter IV — ELSEWHERE: stacked cards -->
+      <div class="chapter chapter--stack" data-effect="stack">
+        <div class="chapter-label">IV / ELSEWHERE</div>
+        <div class="stack-frame">
+          <img
+            src="./public/images/12.webp"
+            srcset="./public/images/12-640.webp 640w, ./public/images/12.webp 1333w"
+            sizes="(max-width:700px) 75vw, 40vw"
+            alt="Mélinda with horses in a field"
+            loading="lazy" decoding="async"
+          >
+          <img
+            src="./public/images/14.webp"
+            srcset="./public/images/14-640.webp 640w, ./public/images/14.webp 1333w"
+            sizes="(max-width:700px) 75vw, 40vw"
+            alt="Mélinda in white dress in the forest"
+            loading="lazy" decoding="async"
+          >
+          <img
+            src="./public/images/15.webp"
+            srcset="./public/images/15-640.webp 640w, ./public/images/15.webp 1333w"
+            sizes="(max-width:700px) 75vw, 40vw"
+            alt="Mélinda reclining on a tree trunk"
+            loading="lazy" decoding="async"
+          >
+        </div>
+        <span class="chapter-mark">04</span>
+      </div>
+
+      <!-- Chapter V — ANOTHER SIDE: reveal wipe -->
+      <div class="chapter chapter--reveal" data-effect="reveal">
+        <div class="chapter-label">V / ANOTHER SIDE</div>
+        <div class="reveal-frame">
+          <img
+            src="./public/images/16.webp"
+            srcset="./public/images/16-640.webp 640w, ./public/images/16.webp 1333w"
+            sizes="(max-width:700px) 88vw, 70vw"
+            alt="Mélinda in white UNLOGIC hoodie"
+            loading="lazy" decoding="async"
+          >
+          <img
+            src="./public/images/17.webp"
+            srcset="./public/images/17-640.webp 640w, ./public/images/17.webp 1333w"
+            sizes="(max-width:700px) 88vw, 70vw"
+            alt="Mélinda smiling in white hoodie"
+            loading="lazy" decoding="async"
+          >
+        </div>
+        <img
+          class="float float--reveal-accent"
+          src="./public/images/19.webp"
+          srcset="./public/images/19-640.webp 640w, ./public/images/19.webp 1333w"
+          sizes="(max-width:700px) 35vw, 20vw"
+          alt="Creative close-up through transparent material"
+          loading="lazy" decoding="async"
+        >
+        <span class="chapter-mark">05</span>
+      </div>
+
+      <!-- Chapter VI — STILL HERE: full-bleed finale -->
+      <div class="chapter chapter--finale">
+        <img
+          class="finale-bg"
+          src="./public/images/18.webp"
+          srcset="./public/images/18-640.webp 640w, ./public/images/18.webp 1333w"
+          sizes="100vw"
+          alt="Mélinda in a black dress beside stone"
+          loading="lazy" decoding="async"
+        >
+        <span class="chapter-label chapter-label--light">VI / STILL HERE</span>
+      </div>
+
+    </section>
+
+    <!-- ═══ ABOUT ME ═══ -->
+    <section id="about" class="about" aria-label="About Mélinda">
+      <div class="about-photo">
+        <img
+          src="./public/images/02.webp"
+          srcset="./public/images/02-640.webp 640w, ./public/images/02.webp 1333w"
+          sizes="(max-width:700px) 100vw, 50vw"
+          alt="Mélinda in black and white portrait"
+          loading="lazy" decoding="async"
+        >
+      </div>
+      <div class="about-info">
+        <span class="section-label">ABOUT ME</span>
+        <p class="about-tagline">Available for fashion, beauty, portrait and lifestyle work.</p>
+        <dl class="measurements">
+          <div><dt>HEIGHT</dt><dd>162 <small>cm</small></dd></div>
+          <div><dt>BUST</dt><dd>85 <small>cm</small></dd></div>
+          <div><dt>WAIST</dt><dd>65 <small>cm</small></dd></div>
+          <div><dt>HIPS</dt><dd>92 <small>cm</small></dd></div>
+          <div><dt>SHOES</dt><dd>38 <small>EU</small></dd></div>
+          <div><dt>HAIR / EYES</dt><dd>Dark brown</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ═══ CONTACT ═══ -->
+    <section id="contact" class="contact" aria-label="Contact">
+      <span class="section-label">CONTACT</span>
+      <a class="contact-email" href="mailto:modelemelinda@gmail.com">modelemelinda@gmail.com ↗</a>
+      <a class="contact-social" href="https://www.instagram.com/bisoumelinda/" target="_blank" rel="noopener">@bisoumelinda ↗</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <a href="#hero">MÉLINDA.</a>
+    <a href="#work">BACK TO TOP ↑</a>
+  </footer>
+
+  <noscript>
+    <style>.hero-image,.exhibition,.scroll-cue{display:none}</style>
+    <div style="text-align:center;padding:80px 20px">
+      <img src="./public/images/01.webp" alt="Black and white portrait of Mélinda" style="max-height:90vh">
+    </div>
+  </noscript>
+
+</body>
+</html>
