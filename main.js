@@ -28,7 +28,7 @@
       scale:  { current: 0.72, target: 0.72 },
       drift:  { current: 0, target: 0 },
       pan:    { current: 0, target: 0 },
-      stack:  { current: 0, target: 0 },
+      spread: { current: 0, target: 0 },
       reveal: { current: 0, target: 0 },
     });
   });
@@ -134,8 +134,11 @@
         }
       }
 
-      if (effect === 'stack') {
-        vars.stack.target = p - 0.5;
+      if (effect === 'spread') {
+        // 0 = fully stacked in center, 1 = fully fanned out
+        // Start early (15%) and finish by center (50%) so it's done when visible
+        const raw = clamp((p - 0.15) / 0.35);
+        vars.spread.target = raw * raw * (3 - 2 * raw); // smoothstep
       }
 
       if (effect === 'reveal') {
@@ -193,14 +196,11 @@
         if (Math.abs(vars.pan.current - vars.pan.target) > 0.5) needsUpdate = true;
       }
 
-      if (effect === 'stack') {
-        vars.stack.current = lerp(vars.stack.current, vars.stack.target, LERP_FACTOR);
-        const imgs = ch.querySelectorAll('.stack-frame img');
-        const s = vars.stack.current;
-        if (imgs[0]) imgs[0].style.transform = `translate(${(s * -180).toFixed(1)}px, ${(s * 60).toFixed(1)}px) rotate(${(s * -10).toFixed(2)}deg)`;
-        if (imgs[1]) imgs[1].style.transform = `translate(${(s * 120).toFixed(1)}px, ${(s * -45).toFixed(1)}px) rotate(${(s * 7).toFixed(2)}deg)`;
-        if (imgs[2]) imgs[2].style.transform = `translate(${(s * -40).toFixed(1)}px, ${(s * 20).toFixed(1)}px) rotate(${(s * -2).toFixed(2)}deg)`;
-        if (Math.abs(vars.stack.current - vars.stack.target) > 0.001) needsUpdate = true;
+      if (effect === 'spread') {
+        vars.spread.current = lerp(vars.spread.current, vars.spread.target, LERP_FACTOR);
+        const frame = ch.querySelector('.spread-frame');
+        if (frame) frame.style.setProperty('--spread', vars.spread.current.toFixed(4));
+        if (Math.abs(vars.spread.current - vars.spread.target) > 0.001) needsUpdate = true;
       }
 
       if (effect === 'reveal') {
@@ -260,7 +260,7 @@
     vars.scale.current = vars.scale.target;
     vars.drift.current = vars.drift.target;
     vars.pan.current = vars.pan.target;
-    vars.stack.current = vars.stack.target;
+    vars.spread.current = vars.spread.target;
     vars.reveal.current = vars.reveal.target;
   });
   startAnimation();
