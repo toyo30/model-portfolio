@@ -1,126 +1,120 @@
 const photoData = [
-  [1, 'A study in monochrome', 'Black and white close-up portrait of Mélinda'],
-  [4, 'Along the shoreline', 'Mélinda in a white shirt standing by the sea'],
-  [5, 'Salt & light', 'Mélinda seated on a sunny beach in a white shirt'],
-  [8, 'City in monochrome', 'Mélinda in tailored clothing beside an urban doorway, black and white'],
-  [9, 'Between shadows', 'Black and white portrait of Mélinda in a blazer against a city wall'],
-  [7, 'Naturally, beauty', 'Mélinda holding a beauty product in a green forest'],
-  [10, 'Blue horizon', 'Mélinda wearing a sunhat and black swimwear by the sea'],
-  [11, 'Under the sun', 'Close-up of Mélinda in a sunhat beside blue water'],
-  [12, 'An open field', 'Mélinda wearing red trousers in a grassy field with horses'],
-  [13, 'A quieter moment', 'Mélinda beside a horse in a black shirt and red trousers'],
-  [14, 'Into the green', 'Mélinda in a white dress seated on a fallen tree in the forest'],
-  [15, 'Forest light', 'Mélinda reclining on a tree trunk in a white dress'],
-  [16, 'UNLOGIC / 01', 'Mélinda in a white hoodie against a blue sky with UNLOGIC lettering'],
-  [17, 'UNLOGIC / 02', 'Mélinda smiling in a white hoodie with UNLOGIC lettering'],
-  [18, 'Sculpted by light', 'Mélinda in a black dress beside textured stone'],
-  [19, 'Another perspective', 'Creative close-up of Mélinda photographed through transparent material'],
-  [6, 'Beauty in nature', 'Mélinda holding a beauty tube beside her face in a forest'],
-  [2, 'Simply, Mélinda', 'Black and white portrait of Mélinda in a black top and jeans'],
+  [1, 'Black and white close-up portrait of Mélinda'],
+  [4, 'Mélinda in a white shirt standing by the sea'],
+  [5, 'Mélinda seated on a sunny beach in a white shirt'],
+  [8, 'Mélinda in tailored clothing beside an urban doorway, black and white'],
+  [9, 'Black and white portrait of Mélinda in a blazer against a city wall'],
+  [7, 'Mélinda holding a beauty product in a green forest'],
+  [10, 'Mélinda wearing a sunhat and black swimwear by the sea'],
+  [11, 'Close-up of Mélinda in a sunhat beside blue water'],
+  [12, 'Mélinda wearing red trousers in a grassy field with horses'],
+  [13, 'Mélinda beside a horse in a black shirt and red trousers'],
+  [14, 'Mélinda in a white dress seated on a fallen tree in the forest'],
+  [15, 'Mélinda reclining on a tree trunk in a white dress'],
+  [16, 'Mélinda in a white hoodie against a blue sky with UNLOGIC lettering'],
+  [17, 'Mélinda smiling in a white hoodie with UNLOGIC lettering'],
+  [18, 'Mélinda in a black dress beside textured stone'],
+  [19, 'Creative close-up of Mélinda photographed through transparent material'],
+  [6, 'Mélinda holding a beauty tube beside her face in a forest'],
+  [2, 'Black and white portrait of Mélinda in a black top and jeans'],
 ];
-const photos = photoData.map(([number, title, alt]) => ({
-  src: `./public/images/${String(number).padStart(2, '0')}.webp`,
-  small: `./public/images/${String(number).padStart(2, '0')}-640.webp`,
-  width: number === 1 ? 1066 : 1333,
-  title,
-  alt,
-}));
-const gallery = document.querySelector('#gallery');
-const lightbox = document.querySelector('#lightbox');
-const lightboxImage = document.querySelector('#lightbox-image');
-let currentPhoto = 0;
-let opener;
-let touchStart = null;
 
-gallery.innerHTML = photos.map((photo, index) => `
-  <figure class="photo-card reveal">
-    <button class="photo-button" data-photo="${index}" aria-label="Open ${photo.alt}">
-      <span class="photo-frame"><img src="${photo.src}" srcset="${photo.small} 640w, ${photo.src} ${photo.width}w" sizes="(max-width: 600px) 100vw, (max-width: 950px) 60vw, 55vw" alt="${photo.alt}" loading="lazy" decoding="async" width="900" height="1200"><span class="photo-expand" aria-hidden="true">↗</span></span>
-      <span class="photo-caption"><span>${photo.title}</span><span class="photo-number">${String(index + 1).padStart(2, '0')}</span></span>
-    </button>
-  </figure>`).join('');
+const experience = document.querySelector('#experience');
+const container = document.querySelector('#story-cards');
+const progressFill = document.querySelector('#scroll-progress-fill');
+const cue = document.querySelector('.scroll-cue');
+const navDots = [...document.querySelectorAll('.nav-dot')];
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-function showPhoto(index) {
-  currentPhoto = (index + photos.length) % photos.length;
-  const photo = photos[currentPhoto];
-  lightboxImage.src = photo.src;
-  lightboxImage.alt = photo.alt;
-  document.querySelector('#lightbox-caption').textContent = photo.title;
-  document.querySelector('#lightbox-count').textContent = `${String(currentPhoto + 1).padStart(2, '0')} / ${photos.length}`;
-  const nextImage = new Image();
-  nextImage.src = photos[(currentPhoto + 1) % photos.length].src;
+experience.style.setProperty('--scene-count', photoData.length);
+container.innerHTML = photoData.map(([number, alt], index) => {
+  const file = String(number).padStart(2, '0');
+  const width = number === 1 ? 1066 : 1333;
+  return `<figure class="story-card"${index === 0 ? ' style="opacity:1;visibility:visible"' : ''}>
+    <img ${index < 2 ? 'src' : 'data-src'}="./public/images/${file}.webp"
+      ${index < 2 ? 'srcset' : 'data-srcset'}="./public/images/${file}-640.webp 640w, ./public/images/${file}.webp ${width}w"
+      sizes="(max-width:700px) 100vw, 70vw" alt="${alt}"
+      width="${width}" height="2000" decoding="async" ${index === 0 ? 'fetchpriority="high"' : ''} />
+  </figure>`;
+}).join('');
+const cards = [...container.querySelectorAll('.story-card')];
+
+function loadPhoto(index) {
+  const img = cards[index]?.querySelector('img');
+  if (!img?.dataset.src) return;
+  img.srcset = img.dataset.srcset;
+  img.src = img.dataset.src;
+  delete img.dataset.src;
+  delete img.dataset.srcset;
 }
 
-gallery.addEventListener('click', event => {
-  const button = event.target.closest('[data-photo]');
-  if (!button) return;
-  opener = button;
-  showPhoto(Number(button.dataset.photo));
-  lightbox.showModal();
-  document.body.classList.add('modal-open');
-});
-document.querySelector('.close-lightbox').addEventListener('click', () => lightbox.close());
-lightbox.addEventListener('close', () => {
-  document.body.classList.remove('modal-open');
-  opener?.focus({ preventScroll: true });
-});
-document.querySelector('.previous').addEventListener('click', () => showPhoto(currentPhoto - 1));
-document.querySelector('.next').addEventListener('click', () => showPhoto(currentPhoto + 1));
-lightbox.addEventListener('keydown', event => {
-  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-    event.preventDefault();
-    showPhoto(currentPhoto + (event.key === 'ArrowRight' ? 1 : -1));
-  }
-});
-lightbox.addEventListener('click', event => {
-  if (event.target === lightbox || event.target.classList.contains('lightbox-stage')) lightbox.close();
-});
-lightbox.addEventListener('touchstart', event => {
-  if (event.touches.length === 1) touchStart = { x: event.touches[0].clientX, y: event.touches[0].clientY };
-  else touchStart = null;
-}, { passive: true });
-lightbox.addEventListener('touchend', event => {
-  if (!touchStart) return;
-  const dx = event.changedTouches[0].clientX - touchStart.x;
-  const dy = event.changedTouches[0].clientY - touchStart.y;
-  if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.5) showPhoto(currentPhoto + (dx < 0 ? 1 : -1));
-  touchStart = null;
-}, { passive: true });
+const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+let ticking = false;
+let activeCards = new Set([0]);
 
-document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
-  gallery.classList.toggle('is-grid', button.dataset.view === 'grid');
-  document.querySelectorAll('[data-view]').forEach(item => {
-    const active = item === button;
-    item.classList.toggle('active', active);
-    item.setAttribute('aria-pressed', String(active));
+function render() {
+  ticking = false;
+  const top = experience.offsetTop;
+  const viewportHeight = document.querySelector('.story-viewport').clientHeight;
+  const totalDistance = experience.offsetHeight - viewportHeight;
+  const scrollY = window.scrollY;
+  const overallProgress = clamp(scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight), 0, 1);
+  progressFill.style.transform = `scaleX(${overallProgress})`;
+  const inMeasurements = document.querySelector('#measurements').getBoundingClientRect().top < window.innerHeight * .5;
+  navDots.forEach((dot, index) => {
+    const active = index === (inMeasurements ? 1 : 0);
+    dot.classList.toggle('is-active', active);
+    if (active) dot.setAttribute('aria-current', 'location');
+    else dot.removeAttribute('aria-current');
   });
-}));
 
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('#site-nav');
-function closeMenu() {
-  nav.classList.remove('is-open');
-  menuToggle.setAttribute('aria-expanded', 'false');
+  if (reducedMotion.matches) return;
+  // Each portrait holds at center, then travels right as the next enters from the left.
+  const position = clamp((scrollY - top) / Math.max(1, totalDistance), 0, 1) * (cards.length - 1);
+  const nextActive = new Set();
+  const base = Math.floor(position);
+  for (let i = Math.max(0, base - 1); i <= Math.min(cards.length - 1, base + 2); i += 1) {
+    loadPhoto(i);
+    const distance = position - i;
+    if (Math.abs(distance) > 1) continue;
+    nextActive.add(i);
+    const magnitude = Math.abs(distance);
+    const travel = clamp((magnitude - .12) / .88, 0, 1);
+    const eased = travel * travel * (3 - 2 * travel);
+    const direction = distance < 0 ? -1 : 1;
+    const opacity = 1 - clamp((travel - .5) / .5, 0, 1);
+    const x = direction * eased * 108;
+    const scale = 1 - eased * .14;
+    const rotate = direction * eased * 5;
+    const card = cards[i];
+    card.style.visibility = 'visible';
+    card.style.opacity = String(opacity);
+    card.style.transform = `translate3d(${x}%,0,0) scale(${scale}) rotateY(${rotate}deg)`;
+    card.style.zIndex = String(10 - Math.round(magnitude * 5));
+  }
+  for (const index of activeCards) {
+    if (!nextActive.has(index)) {
+      cards[index].style.visibility = 'hidden';
+      cards[index].style.opacity = '0';
+    }
+  }
+  activeCards = nextActive;
+  cue.style.opacity = position < .12 ? '1' : '0';
+  cue.style.pointerEvents = position < .12 ? 'auto' : 'none';
 }
-menuToggle.addEventListener('click', () => {
-  const open = menuToggle.getAttribute('aria-expanded') !== 'true';
-  menuToggle.setAttribute('aria-expanded', String(open));
-  nav.classList.toggle('is-open', open);
-});
-nav.addEventListener('click', event => { if (event.target.closest('a')) closeMenu(); });
-document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
-document.addEventListener('click', event => { if (!event.target.closest('.site-header')) closeMenu(); });
 
-if ('IntersectionObserver' in window) {
-  document.documentElement.classList.add('js');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.06, rootMargin: '0px 0px 30px 0px' });
-  document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+function scheduleRender() {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(render);
 }
-document.querySelector('#year').textContent = new Date().getFullYear();
+
+function updateMotionPreference() {
+  if (reducedMotion.matches) photoData.forEach((_, index) => loadPhoto(index));
+  scheduleRender();
+}
+
+window.addEventListener('scroll', scheduleRender, { passive: true });
+window.addEventListener('resize', scheduleRender, { passive: true });
+reducedMotion.addEventListener('change', updateMotionPreference);
+updateMotionPreference();
