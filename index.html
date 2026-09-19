@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101010" />
+  <meta name="description" content="Mélinda — model. Explore a photographic portfolio of portraits, movement and moments. For bookings: modelemelinda@gmail.com." />
+  <meta property="og:title" content="Mélinda — Model & Portfolio" />
+  <meta property="og:description" content="A study in character. Discover Mélinda’s selected photographs and get in touch." />
+  <title>Mélinda — Model & Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23652632'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-size='48' font-family='Georgia' fill='%23f1efe9'%3Em%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#portfolio">Skip to portfolio</a>
+  <header class="site-header">
+    <a class="wordmark" href="#" aria-label="Mélinda home">m<span>.</span></a>
+    <span class="header-note">A VISUAL JOURNEY / 2026</span>
+    <button class="menu-toggle" aria-controls="site-nav" aria-expanded="false">Menu <span>+</span></button>
+    <nav id="site-nav" aria-label="Main navigation">
+      <a href="#portfolio">Selected work <span>01</span></a>
+      <a href="#about">About <span>02</span></a>
+      <a href="#contact">Get in touch <span>↗</span></a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-topline"><span>01 — A VISUAL JOURNEY</span><span>SCROLL TO EXPLORE</span></div>
+      <h1 id="hero-title">Mélinda<span class="title-period">.</span></h1>
+      <div class="hero-layout">
+        <div class="hero-intro">
+          <span class="eyebrow">MODEL / MUSE / MELINDA</span>
+          <p>Look<br>closer.<br><em>Stay awhile.</em></p>
+          <a class="circle-link" href="#portfolio" aria-label="Explore selected work"><span>Explore<br>the portfolio</span><span class="circle-arrow">↘</span></a>
+          <span class="hero-index">18 IMAGES / 04 CHAPTERS</span>
+        </div>
+        <figure class="hero-photo">
+          <img src="./public/images/01.webp" srcset="./public/images/01-640.webp 640w, ./public/images/01.webp 1066w" sizes="(max-width: 600px) 100vw, 60vw" alt="Black and white portrait of Mélinda" fetchpriority="high" width="1100" height="1400" />
+          <figcaption><span>01 / PORTRAIT</span><span>TAP TO ENTER</span></figcaption>
+        </figure>
+        <div class="hero-side">BEYOND THE FIRST IMPRESSION</div>
+      </div>
+      <div class="hero-bottom"><span>PORTRAIT · BEAUTY · FASHION · LIFESTYLE</span><a href="#portfolio">DRAG TO DISCOVER ↓</a></div>
+    </section>
+    <section class="portfolio section-space" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="section-kicker reveal"><span>02 / THE IMAGE ARCHIVE</span><span>MOVE THROUGH THE WORK</span></div>
+      <div class="section-heading reveal"><h2 id="portfolio-title">Keep<br><em>looking.</em></h2><p>A collection of portraits, movement and light.<br>Tap a frame to enter its world.</p></div>
+      <div class="gallery-toolbar reveal"><span id="photo-count">18 PHOTOGRAPHS</span><div class="view-controls" aria-label="Gallery layout"><button class="view-button active" data-view="editorial" aria-pressed="true">Editorial</button><span>/</span><button class="view-button" data-view="grid" aria-pressed="false">Index</button></div></div>
+      <div class="gallery" id="gallery"></div>
+      <noscript><p>Enable JavaScript to browse all portfolio photographs.</p><img src="./public/images/02.webp" alt="Mélinda portfolio photograph" width="600" /></noscript>
+      <div class="gallery-end reveal"><span>THE END OF THE SCROLL.<br>THE START OF A CONVERSATION.</span><a href="#contact">Let’s create something ↗</a></div>
+    </section>
+    <section class="about section-space" id="about" aria-labelledby="about-title">
+      <div class="section-kicker reveal"><span>02 / IN PERSON</span><span>BEHIND THE PHOTOGRAPHS</span></div>
+      <div class="about-layout"><figure class="about-photo reveal"><img src="./public/images/02.webp" srcset="./public/images/02-640.webp 640w, ./public/images/02.webp 1333w" sizes="(max-width: 600px) 80vw, 40vw" alt="Mélinda wearing a black top and jeans in a black and white portrait" loading="lazy" width="800" height="1100" /><figcaption>MÉLINDA, IN FRAME.</figcaption></figure>
+        <div class="about-copy reveal"><span class="eyebrow">HELLO, I’M MÉLINDA.</span><h2 id="about-title">A little<br><em>about me.</em></h2><p>Every image is a chance to become part of a new story. This is my collection of expressions, silhouettes and moments in front of the camera.</p><p>For bookings, creative projects and collaborations, I’d love to hear from you.</p>
+          <dl class="measurements"><div><dt>Height</dt><dd>162 <small>cm</small></dd></div><div><dt>Bust</dt><dd>85 <small>cm</small></dd></div><div><dt>Waist</dt><dd>65 <small>cm</small></dd></div><div><dt>Hips</dt><dd>92 <small>cm</small></dd></div><div><dt>Shoes</dt><dd>38 <small>EU</small></dd></div><div><dt>Hair / Eyes</dt><dd class="text-value">Dark brown</dd></div></dl>
+          <a class="text-link" href="https://www.instagram.com/bisoumelinda/" target="_blank" rel="noopener noreferrer">Follow @bisoumelinda <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+    <section class="contact section-space" id="contact" aria-labelledby="contact-title">
+      <div class="section-kicker reveal"><span>03 / LET’S CONNECT</span><span>BOOKINGS & COLLABORATIONS</span></div>
+      <div class="contact-main reveal"><h2 id="contact-title">Something<br><em>in mind?</em></h2><a class="contact-circle" href="mailto:modelemelinda@gmail.com" aria-label="Email Mélinda">↗</a></div>
+      <div class="contact-bottom reveal"><p>Good things begin with a hello.</p><a href="mailto:modelemelinda@gmail.com">modelemelinda@gmail.com ↗</a></div>
+    </section>
+  </main>
+  <footer><a class="footer-logo" href="#">Mélinda.</a><span>© <span id="year">2026</span> MÉLINDA</span><a href="https://www.instagram.com/bisoumelinda/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a><a href="#">BACK TO TOP ↑</a></footer>
+  <dialog id="lightbox" aria-label="Portfolio photograph viewer">
+    <div class="lightbox-top"><span class="lightbox-brand">Mélinda.</span><button class="close-lightbox" aria-label="Close photograph viewer">Close <span>×</span></button></div>
+    <div class="lightbox-stage"><button class="lightbox-arrow previous" aria-label="Previous photograph">←</button><img id="lightbox-image" alt="" /><button class="lightbox-arrow next" aria-label="Next photograph">→</button></div>
+    <div class="lightbox-bottom"><span id="lightbox-caption" aria-live="polite"></span><span id="lightbox-count"></span><span class="swipe-hint">← SWIPE TO EXPLORE →</span></div>
+  </dialog>
+</body>
+</html>

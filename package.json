@@ -1,0 +1,11 @@
+{
+  "name": "melinda-model-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An editorial, mobile-first model portfolio for Mélinda",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "python3 -m http.server 4173",
+    "check": "node --check main.js && node --check scripts/build.mjs"
+  }
+}
